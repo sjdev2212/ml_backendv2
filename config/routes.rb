@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   get "users" => "users#index"
+  resources :gamings
   resources :sessions, only: [:create, :destroy]
   resources :registrations, only: [:create]
   delete :logout, to: "sessions#logout"
