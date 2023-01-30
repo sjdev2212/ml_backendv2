@@ -9,7 +9,6 @@ class CreateCellphones < ActiveRecord::Migration[7.0]
       t.integer :price
       t.string :param
 
-
       t.timestamps
     end
   end
