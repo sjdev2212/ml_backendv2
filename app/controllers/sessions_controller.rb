@@ -2,17 +2,22 @@ class SessionsController < ApplicationController
     include CurrentUserConcern
     def create 
         user = User
-        .find_by(email: params[:email])
-        .try(:authenticate, params[:password])
+            .find_by(email: params["user"]["email"])
+            .try(:authenticate, params["user"]["password"])
         if user
             session[:user_id] = user.id
             render json: {
-                status: :created,
+                status: :logged_in,
                 logged_in: true,
                 user: user
             }
+            
         else
-            render json: { status: 401 }
+            render json: { 
+                :error => "Invalid username or password"
+
+            }
+
         end
 
     end
